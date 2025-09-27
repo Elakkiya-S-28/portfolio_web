@@ -18,7 +18,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-6">
+          <div className="hidden md:flex space-x-10">
             <Link href="/" className="text-gray-700 hover:text-blue-600">Home</Link>
             <Link href="/about" className="text-gray-700 hover:text-blue-600">About</Link>
             <Link href="/services" className="text-gray-700 hover:text-blue-600">Services</Link>
