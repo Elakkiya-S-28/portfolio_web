@@ -1,4 +1,4 @@
-import Main from "../container/Main"
+import Main from "./Main/page"
 
 
  const Page = () =>{
