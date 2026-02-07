@@ -1,4 +1,4 @@
-import { About } from "@/container/Main/About/page";
+import { Skills } from "@/container/Main/Skills/page";
 import { Contacts } from "@/container/Main/Contacts/page";
 import Home from "@/container/Main/Home/page";
 
@@ -18,10 +18,10 @@ export default function Main() {
             Home
           </a>
           <a
-            href="#about"
+            href="#skills"
             className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700"
           >
-            About
+           Skills
           </a>
           <a
             href="#contacts"
@@ -35,8 +35,8 @@ export default function Main() {
         <Home />
       </section>
 
-      <section id="about" className="min-h-screen px-7 pt-20">
-        <About />
+      <section id="skills" className="min-h-screen px-7 pt-20">
+        <Skills />
       </section>
 
       <section id="contacts" className="min-h-screen px-7 pt-20">

@@ -15,7 +15,7 @@ export default function Home() {
 
   return (
     <div>
-      <div className="flex flex-row justify-between items-center ml-10 mr-10">
+      <div className="flex flex-row justify-between items-center m-10">
         <div className="flex flex-col gap-5">
           <div>
             <span className="text-5xl">Hello </span>
@@ -25,10 +25,10 @@ export default function Home() {
           <div className="flex items-center gap-4">
             <div className="w-40 h-[3px] bg-[#F26B4F]"></div>
             <TypeAnimation
-              sequence={["I'm Elakkiya Selvarajan",3000,"",1000]}
+              sequence={["I'm Elakkiya Selvarajan", 3000, "", 1000]}
               wrapper="span"
               speed={40}
-             className="text-4xl font-semibold min-w-[420px] inline-block"
+              className="text-4xl font-semibold min-w-[420px] inline-block"
               repeat={Infinity}
             />
             {/* <h2 className="text-4xl font-semibold">I'm Elakkiya Selvarajan</h2> */}
@@ -50,9 +50,11 @@ export default function Home() {
       <div>
         <h1 className="text-2xl wrap-anywhere text-red-50">
           I’m a React Native Developer with 2+ years of experience building
-          cross-platform mobile applications. I also have experience in web
-          frontend development and a good understanding of backend APIs, which
-          helps me create complete and scalable solutions.
+          cross-platform mobile applications. I enjoy creating clean, intuitive
+          user experiences and scalable solutions. I also have experience in web
+          frontend development and working with backend APIs. I’m seeking
+          opportunities as a React Native or Frontend Developer to build
+          meaningful products and grow as a developer.
         </h1>
       </div>
     </div>
