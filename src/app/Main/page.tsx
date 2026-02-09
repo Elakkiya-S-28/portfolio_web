@@ -1,6 +1,7 @@
-import { Skills } from "@/container/Main/Skills/page";
 import { Contacts } from "@/container/Main/Contacts/page";
 import Home from "@/container/Main/Home/page";
+import Project from "@/container/Main/Project/page";
+import { Skills } from "@/container/Main/Skills/page";
 
 export default function Main() {
   return (
@@ -21,7 +22,13 @@ export default function Main() {
             href="#skills"
             className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700"
           >
-           Skills
+            Skills
+          </a>
+          <a
+            href="#project"
+            className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700"
+          >
+            Project
           </a>
           <a
             href="#contacts"
@@ -37,6 +44,9 @@ export default function Main() {
 
       <section id="skills" className="min-h-screen px-7 pt-20">
         <Skills />
+      </section>
+      <section id="project" className="min-h-screen px-7 pt-20">
+        <Project />
       </section>
 
       <section id="contacts" className="min-h-screen px-7 pt-20">
