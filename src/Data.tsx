@@ -14,7 +14,7 @@ import {
   SiXcode,
   SiAndroidstudio,
 } from "react-icons/si";
-import { TbBrandReactNative,TbBrandNextjs } from "react-icons/tb";
+import { TbBrandReactNative, TbBrandNextjs } from "react-icons/tb";
 import { DiSwift } from "react-icons/di";
 import { BiLogoVisualStudio } from "react-icons/bi";
 
@@ -147,4 +147,74 @@ export const TOOLS = [
     tools: "npm",
     icon: SiNpm,
     color: "text-red-600",
-  },]
+  },
+];
+
+export const PROJECTS = [
+  {
+    id: 0,
+    title: "Aayush",
+    description:
+      "Aayush is a patient-centric healthcare app that enables users to book, reschedule, and manage doctor appointments. It features medicine reminders, medical report uploads, navigation assistance, and secure ABHA integration with NHA certification. The app also integrates with a smartwatch, allowing users to view upcoming appointments and access appointment QR codes directly on the watch. Aayush is developed for both Android and iOS platforms.",
+    image: "/Image/image4.jpeg",
+    SkillsTools: [
+      "React Native",
+      "Firebase",
+      "Figma",
+      "GitHub",
+      "npm",
+      "Visual Studio Code",
+      "Android Studio",
+      "Xcode",
+      "Postman",
+    ],
+  },
+  {
+    id: 1,
+    title: "Note App",
+    description:
+      "A daily notes application for creating, organizing, and searching notes.  Users can personalize the app with theme switching for a better experience.",
+    image: "/Image/image1.jpeg",
+    SkillsTools: [
+      "React Native",
+      "Figma",
+      "GitHub",
+      "npm",
+      "Visual Studio Code",
+      "Android Studio",
+      "Xcode",
+    ],
+  },
+  {
+    id: 2,
+    title: "Lucky Pick",
+    description:
+      "Lucky Pick is a simple number-guessing game where users select a number and compete against an opponent trying to guess it. The app focuses on clean UI, smooth game flow, and interactive gameplay.",
+    image: "/Image/image2.jpeg",
+    SkillsTools: [
+      "React Native",
+      "Figma",
+      "GitHub",
+      "npm",
+      "Visual Studio Code",
+      "Android Studio",
+      "Xcode",
+    ],
+  },
+  {
+    id: 3,
+    title: "Tic Tac Toe",
+    description:
+      "A classic Tic Tac Toe game where the user plays against the computer, focusing on simple gameplay and intuitive UI.",
+    image: "/Image/image3.jpeg",
+    SkillsTools: [
+      "React Native",
+      "Figma",
+      "GitHub",
+      "npm",
+      "Visual Studio Code",
+      "Android Studio",
+      "Xcode",
+    ],
+  },
+];
