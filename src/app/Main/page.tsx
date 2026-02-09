@@ -1,5 +1,6 @@
 "use client";
 import { Contacts } from "@/container/Main/Contacts/page";
+import Experience from "@/container/Main/Experience/page";
 import Home from "@/container/Main/Home/page";
 import Project from "@/container/Main/Project/page";
 import { Skills } from "@/container/Main/Skills/page";
@@ -14,10 +15,8 @@ export default function Main() {
       const currentScrollY = window.scrollY;
 
       if (currentScrollY > lastScrollY && currentScrollY > 80) {
-        // scrolling down
         setShowNav(false);
       } else {
-        // scrolling up
         setShowNav(true);
       }
 
@@ -58,6 +57,12 @@ export default function Main() {
           >
             Project
           </a>
+           <a
+            href="#experience"
+            className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700"
+          >
+            Experience
+          </a>
           <a
             href="#contacts"
             className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700"
@@ -75,6 +80,9 @@ export default function Main() {
       </section>
       <section id="project" className="min-h-screen px-7 pt-20">
         <Project />
+      </section>
+      <section id="experience" className="min-h-screen px-7 pt-20">
+        <Experience />
       </section>
 
       <section id="contacts" className="min-h-screen px-7 pt-20">
