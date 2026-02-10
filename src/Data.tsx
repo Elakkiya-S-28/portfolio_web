@@ -218,3 +218,28 @@ export const PROJECTS = [
     ],
   },
 ];
+
+
+export const EXPERIENCE = [
+  {
+    company: "Plenome Technologies Pvt Ltd",
+    role: "Frontend Developer - React Native",
+    duration: "Aug 2023 - Present",
+    description:
+      "Built scalable UI components, improved performance, and collaborated with design teams.",
+  },
+  {
+    company: "Plenome Technologies Pvt Ltd",
+    role: "Frontend Developer - React Native (Internship)",
+    duration: "Feb 2023 – July 2023",
+    description:
+      "Worked on enterprise-level applications with focus on accessibility and performance.",
+  },
+  {
+    company: "Compunet Connections",
+    role: "Frontend Developer - React  (Internship)",
+    duration: "June 2021 – Nov 2021",
+    description:
+      "Automated CI/CD pipelines and improved infrastructure reliability.",
+  },
+];
