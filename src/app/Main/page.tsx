@@ -1,5 +1,5 @@
 "use client";
-import { Contacts } from "@/container/Main/Contacts/page";
+import  Contacts  from "@/container/Main/Contacts/page";
 import Experience from "@/container/Main/Experience/page";
 import Home from "@/container/Main/Home/page";
 import Project from "@/container/Main/Project/page";
