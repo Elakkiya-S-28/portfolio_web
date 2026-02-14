@@ -1,4 +1,4 @@
-import { FaHtml5, FaCss3Alt, FaReact, FaGitAlt } from "react-icons/fa";
+import { FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaMailBulk, FaLinkedin, FaMedium ,FaGithub } from "react-icons/fa";
 import {
   SiJavascript,
   SiTypescript,
@@ -241,5 +241,37 @@ export const EXPERIENCE = [
     duration: "June 2021 – Nov 2021",
     description:
       "Automated CI/CD pipelines and improved infrastructure reliability.",
+  },
+];
+
+
+export const contactLinks = [
+  {
+    icon: FaMailBulk,
+    label: "Email",
+    href: "mailto:selvarajanelakkiya@gmail.com",
+    text: "selvarajanelakkiya@gmail.com",
+    color: "from-orange-500 to-red-500",
+  },
+  {
+    icon: FaLinkedin,
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/elakkiya-selvarajan-384b1a1aa/",
+    text: "linkedin.com/in/elakkiya-selvarajan",
+    color: "from-orange-500 to-red-500",
+  },
+  {
+    icon: FaGithub,
+    label: "GitHub",
+    href: "https://github.com/Elakkiya-S-28",
+    text: "github.com/Elakkiya-S-28",
+    color: "from-gray-700 to-gray-800",
+  },
+  {
+    icon: FaMedium,
+    label: "Medium",
+    href: "https://medium.com/@selvarajanelakkiya",
+    text: "medium.com/@selvarajanelakkiya",
+    color: "from-gray-400 to-gray-500",
   },
 ];
