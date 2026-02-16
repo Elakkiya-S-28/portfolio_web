@@ -257,14 +257,14 @@ export const contactLinks = [
     icon: FaLinkedin,
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/elakkiya-selvarajan-384b1a1aa/",
-    text: "linkedin.com/in/elakkiya-selvarajan",
+    // text: "linkedin.com/in/elakkiya-selvarajan",
     color: "from-orange-500 to-red-500",
   },
   {
     icon: FaGithub,
     label: "GitHub",
     href: "https://github.com/Elakkiya-S-28",
-    text: "github.com/Elakkiya-S-28",
+    // text: "github.com/Elakkiya-S-28",
     color: "from-gray-700 to-gray-800",
   },
   {
