@@ -36,7 +36,7 @@ export default function Experience() {
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               className="p-2 bg-gradient-to-br from-[#FA8112] to-[#F5E7C6] rounded-xl"
             >
-              <FaBriefcase className="w-6 h-6 text-[#FAF3E1] drop-shadow-lg" />
+              {/* <FaBriefcase className="w-6 h-6 text-[#FAF3E1] drop-shadow-lg" /> */}
             </motion.div>
             <h2 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#FAF3E1] via-[#F5E7C6] to-[#FA8112] bg-clip-text text-transparent">
               Work Experience
