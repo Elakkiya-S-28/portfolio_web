@@ -19,12 +19,12 @@ export default function HomeImage() {
       <img
         src="/Image/homeimage.png"
         alt="Profile"
-        className="absolute top-35 right-32 w-[400px] h-auto object-contain z-10"
+        className="absolute top-35 right-25 w-[400px] h-auto object-contain z-10"
       />
 
       <div className="relative">
         <span
-          className="absolute top-70 left-105 text-[160px] text-[#F26B4F] border outline select-none"
+          className="absolute top-70 left-95 text-[160px] text-[#F26B4F] border outline select-none"
           style={{
             WebkitTextStroke: "3px #F26B4F",
             color: "transparent",

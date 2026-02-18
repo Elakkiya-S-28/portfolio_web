@@ -24,6 +24,7 @@ export const SKILLS = [
     skills: "HTML",
     icon: FaHtml5,
     color: "text-orange-500",
+    
   },
   {
     id: 1,
