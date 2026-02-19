@@ -278,6 +278,8 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
+
 import { FaMailBulk } from "react-icons/fa"; // ✅ Fixed: Use 'fa' for FaMailBulk
 import { FaSpinner } from "react-icons/fa6";  // ✅ FaSpinner exists in fa6
 import { TypeAnimation } from "react-type-animation";
@@ -296,18 +298,46 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   setIsSubmitting(true);
+  //   await new Promise(resolve => setTimeout(resolve, 1500));
+  //   setIsSubmitting(false);
+  //   setSubmitted(true);
+  //   setTimeout(() => {
+  //     setSubmitted(false);
+  //     setFormData({ name: "", email: "", message: "" });
+  //   }, 3000);
+  // };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
+  
+    try {
+      await emailjs.send(
+        "service_svi8l79",   // 🔥 replace
+        "template_ae0ahft",  // 🔥 replace
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+        },
+        "iZrabm9sFjOBIswjQ"    // 🔥 replace
+      );
+  
+      setSubmitted(true);
       setFormData({ name: "", email: "", message: "" });
-    }, 3000);
+  
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      alert("Failed to send message. Please try again.");
+    }
+  
+    setIsSubmitting(false);
   };
-
+  
+  
   return (
     <section className="min-h-screen py-24 lg:py-32 bg-gradient-to-br from-slate-900 via-black/20 to-slate-900/50 relative overflow-hidden">
       {/* Background Elements */}
