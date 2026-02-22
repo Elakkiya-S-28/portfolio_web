@@ -1,4 +1,4 @@
-import { FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaMailBulk, FaLinkedin, FaMedium ,FaGithub } from "react-icons/fa";
+import { FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaMailBulk, FaLinkedin, FaMedium, FaGithub } from "react-icons/fa";
 import {
   SiJavascript,
   SiTypescript,
@@ -24,7 +24,7 @@ export const SKILLS = [
     skills: "HTML",
     icon: FaHtml5,
     color: "text-orange-500",
-    
+
   },
   {
     id: 1,
@@ -139,12 +139,18 @@ export const TOOLS = [
   },
   {
     id: 7,
-    tools: "Figma",
-    icon: SiFigma,
-    color: "text-pink-500",
+    tools: "Cursor AI",
+    icon: SiAndroidstudio, // Using Android Studio icon as placeholder for Cursor AI
+    color: "text-purple-500",
   },
   {
     id: 8,
+    tools: "Antigravity",
+    icon: SiNpm, // Using npm icon as placeholder for Antigravity
+    color: "text-indigo-500",
+  },
+  {
+    id: 9,
     tools: "npm",
     icon: SiNpm,
     color: "text-red-600",
@@ -155,6 +161,7 @@ export const PROJECTS = [
   {
     id: 0,
     title: "Aayush",
+    github: "",
     description:
       "Aayush is a patient-centric healthcare app that enables users to book, reschedule, and manage doctor appointments. It features medicine reminders, medical report uploads, navigation assistance, and secure ABHA integration with NHA certification. The app also integrates with a smartwatch, allowing users to view upcoming appointments and access appointment QR codes directly on the watch. Aayush is developed for both Android and iOS platforms.",
     image: "/Image/image4.jpeg",
@@ -173,6 +180,7 @@ export const PROJECTS = [
   {
     id: 1,
     title: "Note App",
+    github: "https://github.com/Elakkiya-S-28/NoteApps",
     description:
       "A daily notes application for creating, organizing, and searching notes.  Users can personalize the app with theme switching for a better experience.",
     image: "/Image/image1.jpeg",
@@ -189,6 +197,7 @@ export const PROJECTS = [
   {
     id: 2,
     title: "Lucky Pick",
+    github: "https://github.com/Elakkiya-S-28/LuckyPick",
     description:
       "Lucky Pick is a simple number-guessing game where users select a number and compete against an opponent trying to guess it. The app focuses on clean UI, smooth game flow, and interactive gameplay.",
     image: "/Image/image2.jpeg",
@@ -205,6 +214,7 @@ export const PROJECTS = [
   {
     id: 3,
     title: "Tic Tac Toe",
+    github: "https://github.com/Elakkiya-S-28/Tic-Tac-Toe",
     description:
       "A classic Tic Tac Toe game where the user plays against the computer, focusing on simple gameplay and intuitive UI.",
     image: "/Image/image3.jpeg",
@@ -272,7 +282,7 @@ export const contactLinks = [
     icon: FaMedium,
     label: "Medium",
     href: "https://medium.com/@selvarajanelakkiya",
-    text: "medium.com/@selvarajanelakkiya",
+    // text: "medium.com/@selvarajanelakkiya",
     color: "from-gray-400 to-gray-500",
   },
 ];

@@ -1,345 +1,178 @@
-// "use client";
-
-// import { motion } from "framer-motion";
-// import Lottie from "lottie-react";
-// import { FaBriefcase, FaCalendarAlt, FaRocket } from "react-icons/fa";
-// import { EXPERIENCE } from "@/Data";
-// import work from "../../../../public/lottie/work.json";
-
-// export default function Experience() {
-//   return (
-//     <section className="min-h-screen px-6 md:px-12 lg:px-20 py-24 bg-gradient-to-br from-[#222222] via-black/30 to-[#111] relative overflow-hidden">
-      
-//       {/* Background Glow */}
-//       <div className="absolute inset-0">
-//         <div className="absolute top-20 left-1/4 w-80 h-80 bg-[#FA8112]/10 rounded-full blur-3xl animate-pulse" />
-//         <div className="absolute bottom-32 right-1/4 w-72 h-72 bg-[#F5E7C6]/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}} />
-//       </div>
-
-//       <div className="max-w-7xl mx-auto relative z-20">
-
-//         {/* Header */}
-//         <motion.div 
-//           className="text-center mb-24"
-//           initial={{ opacity: 0, y: 30 }}
-//           whileInView={{ opacity: 1, y: 0 }}
-//           viewport={{ once: true }}
-//           transition={{ duration: 0.8 }}
-//         >
-//           <motion.div 
-//             className="inline-flex items-center gap-4 px-10 py-6 bg-black/40 backdrop-blur-xl rounded-3xl border border-[#F5E7C6]/30 shadow-2xl"
-//             whileHover={{ scale: 1.02 }}
-//             transition={{ type: "spring", stiffness: 400 }}
-//           >
-//             <motion.div 
-//               animate={{ rotate: 360 }}
-//               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-//               className="p-2 bg-gradient-to-br from-[#FA8112] to-[#F5E7C6] rounded-xl"
-//             >
-//               {/* <FaBriefcase className="w-6 h-6 text-[#FAF3E1] drop-shadow-lg" /> */}
-//             </motion.div>
-//             <h2 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#FAF3E1] via-[#F5E7C6] to-[#FA8112] bg-clip-text text-transparent">
-//               Work Experience
-//             </h2>
-//           </motion.div>
-//         </motion.div>
-
-//         {/* Main Layout */}
-//         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          
-//           {/* LEFT LOTTIE */}
-//           <motion.div 
-//             className="lg:col-span-4 lg:sticky lg:top-32 lg:h-[85vh] order-2 lg:order-1"
-//             initial={{ opacity: 0, x: -50 }}
-//             whileInView={{ opacity: 1, x: 0 }}
-//             viewport={{ once: true }}
-//             transition={{ duration: 0.8 }}
-//           >
-//             <motion.div 
-//               className="w-full h-full bg-black/20 backdrop-blur-xl rounded-3xl border border-[#F5E7C6]/20 shadow-2xl p-6 overflow-hidden"
-//               whileHover={{ scale: 1.02 }}
-//               transition={{ type: "spring", stiffness: 300 }}
-//             >
-//               <Lottie 
-//                 animationData={work} 
-//                 loop 
-//                 className="w-full h-full drop-shadow-2xl"
-//               />
-//             </motion.div>
-//           </motion.div>
-
-//           {/* RIGHT TIMELINE */}
-//           <div className="lg:col-span-8 relative order-1 lg:order-2">
-            
-//             {/* Vertical Line */}
-//             <div className="absolute left-6 top-0 h-full w-[3px] bg-gradient-to-b from-[#FA8112]/80 via-[#F5E7C6]/70 to-[#FAF3E1]/60 shadow-lg rounded-full z-10" />
-
-//             <div className="space-y-20 relative z-20">
-//               {EXPERIENCE.map((item, index) => (
-//                 <motion.div
-//                   key={index}
-//                   className="relative flex items-start gap-10"
-//                   initial={{ opacity: 0, y: 40 }}
-//                   whileInView={{ opacity: 1, y: 0 }}
-//                   viewport={{ once: true }}
-//                   transition={{ duration: 0.6, delay: index * 0.15 }}
-//                 >
-//                   {/* ANIMATED AERO DOT - PERFECTLY ALIGNED */}
-//                   <div className="flex-shrink-0 mt-[22px]"> {/* Fixed vertical alignment */}
-//                     <motion.div 
-//                       className="cursor-pointer"
-//                       initial={{ scale: 0, rotate: -180 }}
-//                       whileInView={{ scale: 1, rotate: 0 }}
-//                       whileHover={{ 
-//                         scale: 1.4, 
-//                         y: -10
-//                       }}
-//                       whileTap={{ scale: 0.95 }}
-//                       viewport={{ once: true }}
-//                       transition={{ 
-//                         type: "spring", 
-//                         stiffness: 400, 
-//                         damping: 15,
-//                         delay: index * 0.1
-//                       }}
-//                     >
-//                       <motion.div 
-//                         className="w-12 h-12 bg-gradient-to-br from-[#FA8112]/90 to-[#F5E7C6]/90 rounded-full flex items-center justify-center shadow-2xl border-4 border-[#111] overflow-hidden relative"
-//                         style={{ boxShadow: "0 10px 30px rgba(250, 129, 18, 0.4)" }}
-//                         animate={{ 
-//                           scale: [1, 1.08, 1]
-//                         }}
-//                         transition={{ 
-//                           scale: { duration: 2.5, repeat: Infinity, ease: "easeInOut" }
-//                         }}
-//                         whileHover={{ 
-//                           scale: 1.2,
-//                           boxShadow: "0 20px 40px rgba(250,129,18,0.6)"
-//                         }}
-//                       >
-//                         <motion.div 
-//                           className="absolute inset-0 bg-gradient-to-r from-[#FA8112]/50 to-[#F5E7C6]/50 rounded-full blur-sm -z-10"
-//                           animate={{ scale: [1, 1.25, 1] }}
-//                           transition={{ duration: 1.8, repeat: Infinity }}
-//                         />
-//                         <FaRocket className="text-black w-5 h-5 drop-shadow-xl z-20 relative" />
-//                       </motion.div>
-//                     </motion.div>
-//                   </div>
-
-//                   {/* Card */}
-//                   <motion.div 
-//                     className="w-full max-w-2xl bg-black/40 backdrop-blur-3xl border border-[#F5E7C6]/30 rounded-3xl p-8 hover:border-[#F5E7C6]/70 hover:shadow-[#FA8112]/30 hover:-translate-y-2 transition-all duration-700 relative z-20 flex-1"
-//                     initial={{ scale: 0.95, rotateX: 10 }}
-//                     whileInView={{ scale: 1, rotateX: 0 }}
-//                     whileHover={{ scale: 1.02, rotateX: -5 }}
-//                     transition={{ duration: 0.6 }}
-//                   >
-//                     {/* Background Glow */}
-//                     <motion.div 
-//                       className="absolute inset-0 bg-gradient-to-br from-[#FA8112]/10 via-[#F5E7C6]/5 rounded-3xl blur-xl -z-10 opacity-80"
-//                       animate={{ scale: [1, 1.05, 1] }}
-//                       transition={{ duration: 3, repeat: Infinity }}
-//                     />
-                    
-//                     {/* Company Name Row - LEVEL WITH AERO */}
-//                     <div className="flex items-center gap-4 pb-6 mb-6 border-b border-[#F5E7C6]/40 hover:border-[#F5E7C6]/70 transition-all duration-500">
-//                       <div className="w-3 h-3 bg-gradient-to-r from-[#FA8112] to-[#F5E7C6] rounded-full shadow-lg flex-shrink-0" />
-//                       <h3 className="text-2xl lg:text-3xl font-black text-[#FAF3E1] leading-tight drop-shadow-xl">
-//                         {item.company}
-//                       </h3>
-//                     </div>
-
-//                     {/* Duration */}
-//                     <motion.div 
-//                       className="flex items-center gap-3 text-lg text-[#F5E7C6]/90 font-semibold mb-6"
-//                       initial={{ opacity: 0, x: 20 }}
-//                       whileInView={{ opacity: 1, x: 0 }}
-//                       transition={{ duration: 0.5, delay: 0.2 }}
-//                     >
-//                       <FaCalendarAlt className="w-5 h-5 text-[#FA8112] drop-shadow-lg flex-shrink-0" />
-//                       <span>{item.duration}</span>
-//                     </motion.div>
-
-//                     {/* Role */}
-//                     <motion.h4 
-//                       className="text-xl font-bold bg-gradient-to-r from-[#FA8112] via-[#F5E7C6] to-[#FA8112] bg-clip-text text-transparent mb-6 pl-6 border-l-6 border-[#F5E7C6]/50 shadow-lg"
-//                       initial={{ x: 30, opacity: 0 }}
-//                       whileInView={{ x: 0, opacity: 1 }}
-//                       transition={{ duration: 0.6, delay: 0.3 }}
-//                     >
-//                       {item.role}
-//                     </motion.h4>
-
-//                     {/* Description */}
-//                     <motion.p 
-//                       className="text-lg text-[#F5E7C6]/95 leading-relaxed font-medium tracking-wide"
-//                       initial={{ opacity: 0, y: 20 }}
-//                       whileInView={{ opacity: 1, y: 0 }}
-//                       transition={{ duration: 0.6, delay: 0.4 }}
-//                     >
-//                       {item.description}
-//                     </motion.p>
-//                   </motion.div>
-//                 </motion.div>
-//               ))}
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-
 "use client";
+import React from "react";
 import { motion } from "framer-motion";
 import Lottie from "lottie-react";
-import { FaBriefcase } from "react-icons/fa6";
-import { FaCalendarAlt } from "react-icons/fa";
-import { FaRocket } from "react-icons/fa"; // ✅ ADDED: Missing rocket icon import
+import { FaCalendarAlt, FaTerminal, FaCodeBranch, FaCircle, FaLayerGroup } from "react-icons/fa";
 import { EXPERIENCE } from "@/Data";
 import work from "../../../../public/lottie/work.json";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15 }
-  }
-};
-
 export default function Experience() {
+  // Logic to group experience by company
+  const groupedExperience = EXPERIENCE.reduce((acc, item) => {
+    if (!acc[item.company]) {
+      acc[item.company] = [];
+    }
+    acc[item.company].push(item);
+    return acc;
+  }, {});
+
   return (
-    <section className="min-h-screen py-24 lg:py-32 bg-gradient-to-br from-slate-900 via-black/20 to-slate-900/50 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-gradient-to-r from-orange-500/10 to-amber-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-gradient-to-r from-slate-900/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1.5s'}} />
+    <section className="relative min-h-screen bg-[#050505] py-20 overflow-hidden">
+      {/* Background Decorative Grid */}
+      <div className="absolute top-20 left-10 pointer-events-none select-none">
+        <h2 className="text-[15rem] font-black text-white/[0.02] leading-none">
+          EXPERIENCE
+        </h2>
+      </div>
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_60%,transparent_100%)]" />
+        <div className="absolute top-1/4 left-0 w-96 h-96 bg-indigo-500/10 blur-[120px] rounded-full" />
+        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-cyan-500/10 blur-[120px] rounded-full" />
       </div>
 
-      <div className="container mx-auto px-6 lg:px-12 max-w-7xl relative z-10">
-        {/* Header */}
-        <motion.div 
-          className="text-center mb-24 lg:mb-32"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <motion.div 
-            className="inline-flex items-center gap-4 px-8 py-4 bg-black/20 backdrop-blur-xl rounded-3xl border border-white/10 shadow-xl max-w-max mx-auto"
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 400 }}
+      <div className="container mx-auto px-6 relative z-10">
+        {/* SECTION HEADER */}
+        <div className="flex flex-col items-center mb-16 lg:mb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="flex items-center gap-2 text-indigo-400 font-mono mb-4"
           >
-            <div className="p-3 bg-gradient-to-r from-orange-500 to-amber-500 rounded-2xl shadow-lg">
-              <FaBriefcase className="w-5 h-5 text-white" />
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-black bg-gradient-to-r from-white via-slate-200 to-orange-400 bg-clip-text text-transparent tracking-tight">
-              Work Experience
-            </h2>
+            <FaTerminal className="text-xs" />
+            <span className="text-xs uppercase tracking-[0.3em]">System_Logs / Experience</span>
           </motion.div>
-        </motion.div>
+          <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tighter text-center">
+            Career <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Architecture.</span>
+          </h2>
+        </div>
 
-        {/* Main Layout */}
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
-          {/* Left Lottie */}
-          <motion.div 
-            className="lg:col-span-4 lg:sticky lg:top-32 order-2 lg:order-1 lg:h-[75vh]"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.div 
-              className="w-full h-full bg-black/10 backdrop-blur-2xl rounded-3xl border border-white/10 shadow-2xl p-8 flex items-center justify-center group"
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
+        <div className="grid lg:grid-cols-12 gap-16 items-start">
+
+          {/* LEFT COLUMN: FIXED/STICKY LIVE MONITORING UNIT */}
+          <div className="lg:col-span-5 lg:sticky lg:top-32 lg:h-fit order-2 lg:order-1">
+            <motion.div
+              className="w-full pt-4" // Added slight padding-top to align with the first card text
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
             >
-              <Lottie 
-                animationData={work} 
-                loop 
-                className="w-full h-full max-h-96 drop-shadow-2xl group-hover:scale-[1.02] transition-transform duration-500"
-              />
+              <div className="relative group">
+                {/* Background Glow */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-3xl blur opacity-10 group-hover:opacity-20 transition duration-1000"></div>
+
+                <div className="relative bg-slate-900/50 border border-white/10 backdrop-blur-3xl rounded-3xl p-8 overflow-hidden">
+                  {/* Terminal Header */}
+                  <div className="flex items-center justify-between mb-8 border-b border-white/5 pb-4">
+                    <div className="flex gap-1.5">
+                      <div className="w-2.5 h-2.5 rounded-full bg-red-500/40" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/40" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-green-500/40" />
+                    </div>
+                    <span className="text-[10px] font-mono text-slate-500 uppercase">Career_Visualizer.v2</span>
+                  </div>
+
+                  {/* Lottie Animation Container */}
+                  <div className="flex justify-center items-center py-2">
+                    <Lottie
+                      animationData={work}
+                      loop
+                      className="w-full h-auto max-w-[260px] md:max-w-[300px] opacity-90"
+                    />
+                  </div>
+
+                  {/* Progress Bar/Status Area */}
+                  <div className="mt-8 space-y-3">
+                    <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                      <motion.div
+                        animate={{ x: ["-100%", "100%"] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                        className="h-full w-1/3 bg-indigo-500/50"
+                      />
+                    </div>
+                    <p className="text-center font-mono text-[10px] text-indigo-400 animate-pulse uppercase tracking-widest">
+                      Visualizing Deployment History
+                    </p>
+                  </div>
+                </div>
+              </div>
             </motion.div>
-          </motion.div>
+          </div>
 
-          {/* Timeline */}
-          <motion.div 
-            className="lg:col-span-8 order-1 lg:order-2"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <div className="relative">
-              {/* Timeline Line */}
-              <div className="absolute left-10 lg:left-12 top-0 h-full w-1 bg-gradient-to-b from-orange-500/70 via-amber-400/60 to-white/40 rounded-full shadow-xl z-10" />
-              
-              <div className="space-y-16">
-                {EXPERIENCE.map((item, index) => (
-                  <motion.div
-                  key={`${item.company}-${item.role}-${index}`} 
-                    className="relative flex items-start gap-12"
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: index * 0.2 }}
-                  >
-                    {/* Timeline Dot */}
-                    <motion.div 
-                      className="flex-shrink-0 mt-6"
-                      whileHover={{ scale: 1.3, y: -4 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    >
-                      <div className="w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-3xl flex items-center justify-center shadow-2xl border-4 border-slate-900/50 relative overflow-hidden group/dot ml-5">
-                        <div className="absolute inset-0 bg-gradient-to-r from-orange-400/50 to-amber-400/50 rounded-3xl blur-sm animate-pulse opacity-75" />
-                        <FaRocket className="text-slate-900 w-6 h-6 lg:w-7 lg:h-7 relative z-10 drop-shadow-lg" />
-                      </div>
-                    </motion.div>
+          {/* RIGHT COLUMN: DEPLOYMENT LOG (GROUPED) */}
+          <div className="lg:col-span-7 order-1 lg:order-2 space-y-12 relative pt-10 lg:pt-0">
+            {/* The Main Timeline Line */}
+            <div className="absolute left-[19px] top-4 bottom-4 w-[1px] bg-gradient-to-b from-indigo-500/50 via-cyan-500/50 to-transparent hidden md:block" />
 
-                    {/* Experience Card */}
-                    <div className="flex-1 min-w-0">
-                      <motion.div 
-                        className="group/card bg-black/20 backdrop-blur-xl border border-white/10 hover:border-orange-500/50 rounded-3xl p-8 lg:p-10 hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-700 hover:-translate-y-3 relative overflow-hidden"
-                        initial={{ scale: 0.95 }}
-                        whileInView={{ scale: 1 }}
-                        whileHover={{ scale: 1.02 }}
-                        transition={{ duration: 0.6 }}
-                      >
-                        {/* Card Glow */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 rounded-3xl blur-xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 -z-10" />
-                        
-                        {/* Company Header */}
-                        <div className="flex items-start gap-4 pb-6 mb-8 border-b border-white/10 group-hover/card:border-orange-500/30 transition-all duration-500">
-                          <div className="w-4 h-4 mt-1 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full shadow-lg flex-shrink-0" />
-                          <div className="min-w-0">
-                            <h3 className="text-2xl lg:text-3xl font-black text-white truncate group-hover/card:text-orange-400 transition-colors leading-tight">
-                              {item.company}
-                            </h3>
-                            <div className="flex items-center gap-2 mt-2 text-lg text-amber-300 font-medium">
-                              <FaCalendarAlt className="w-4 h-4 flex-shrink-0" />
-                              <span className="truncate">{item.duration}</span>
-                            </div>
-                          </div>
+            {Object.keys(groupedExperience).map((company, groupIndex) => (
+              <motion.div
+                key={company}
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: groupIndex * 0.1 }}
+                viewport={{ once: true }}
+                className="relative pl-0 md:pl-16 group"
+              >
+                {/* Deployment Node (Dot) */}
+                <div className="absolute left-0 top-2 hidden md:flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-slate-900 border border-indigo-500/50 flex items-center justify-center z-10 group-hover:border-cyan-400 transition-colors shadow-[0_0_15px_rgba(99,102,241,0.2)]">
+                    <FaLayerGroup className="text-indigo-400 group-hover:text-cyan-400 text-sm transition-colors" />
+                  </div>
+                </div>
+
+                {/* Main Card */}
+                <div className="bg-slate-900/40 border border-white/5 p-8 rounded-2xl backdrop-blur-sm group-hover:border-indigo-500/30 transition-all duration-500 shadow-xl">
+                  {/* Company Header */}
+                  <div className="mb-8">
+                    <h3 className="text-3xl font-bold text-white tracking-tight group-hover:text-indigo-300 transition-colors">
+                      {company}
+                    </h3>
+                    <div className="h-1 w-12 bg-indigo-500 mt-2 rounded-full" />
+                  </div>
+
+                  {/* Nested Roles (Sub-timeline) */}
+                  <div className="space-y-10 relative">
+                    {/* Inner Line for multiple roles */}
+                    {groupedExperience[company].length > 1 && (
+                      <div className="absolute left-[7px] top-2 bottom-2 w-[1px] bg-slate-800" />
+                    )}
+
+                    {groupedExperience[company].map((role, roleIndex) => (
+                      <div key={roleIndex} className="relative pl-8">
+                        {/* Sub-dot */}
+                        <div className="absolute left-0 top-2 w-[15px] h-[15px] rounded-full bg-slate-950 border-2 border-indigo-500 z-10" />
+
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
+                          <h4 className="text-xl font-semibold text-slate-100 tracking-wide">
+                            {role.role}
+                          </h4>
+                          <span className="flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-[10px] font-mono w-fit">
+                            <FaCalendarAlt size={10} />
+                            {role.duration}
+                          </span>
                         </div>
 
-                        {/* Role */}
-                        <h4 className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent mb-6 pl-1 border-l-8 border-orange-500/50 pb-2">
-                          {item.role}
-                        </h4>
+                        <div className="relative">
+                          <span className="absolute -left-5 top-1 text-indigo-900 font-mono text-sm">{">"}</span>
+                          <p className="text-slate-400 text-sm leading-relaxed font-light">
+                            {role.description}
+                          </p>
+                        </div>
 
-                        {/* Description */}
-                        <p className="text-lg text-slate-300 leading-relaxed max-w-2xl font-medium tracking-wide">
-                          {item.description}
-                        </p>
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
+                        {/* Status Bar */}
+                        <div className="mt-4 flex gap-4 opacity-60">
+                          <div className="flex items-center gap-1.5">
+                            <FaCircle className="text-[6px] text-green-500 animate-pulse" />
+                            <span className="text-[9px] font-mono text-slate-500 uppercase">Deployment: Successful</span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
         </div>
       </div>
     </section>

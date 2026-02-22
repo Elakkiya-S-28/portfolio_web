@@ -1,192 +1,202 @@
 "use client";
-import { motion } from "framer-motion";
 import React from "react";
-import { SKILLS, TOOLS } from "@/Data";
+import { motion } from "framer-motion";
+import { SKILLS, TOOLS } from "@/Data"; // Ensure your paths are correct
 
 const staggerContainer = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.2
-    }
-  }
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
 };
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.95 },
-  show: { 
-    opacity: 1, 
-    y: 0, 
+const moduleVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.98 },
+  show: {
+    opacity: 1,
+    y: 0,
     scale: 1,
-    transition: { 
-      type: "spring", 
-      stiffness: 350, 
-      damping: 28 
-    }
-  }
+    transition: {
+      type: "spring",
+      stiffness: 250,
+      damping: 25,
+    },
+  },
 };
 
 export const Skills = () => {
   return (
-    <section className="min-h-screen py-32 lg:py-40 bg-gradient-to-br from-slate-900 via-black/20 to-slate-900/50 relative overflow-hidden">
-      <div className="container mx-auto px-6 lg:px-8 max-w-7xl relative z-10">
-        
-        {/* Executive Header */}
-        <motion.div 
-          className="text-center mb-24 lg:mb-32"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+    <section className="relative min-h-screen bg-[#050505] text-slate-200 py-32 overflow-hidden font-sans border-t border-white/5">
+      {/* BACKGROUND: ARCHITECTURE GRID & GLOW */}
+      <div className="absolute top-20 left-10 pointer-events-none select-none">
+        <h2 className="text-[15rem] font-black text-white/[0.02] leading-none">
+          SKILLS
+        </h2>
+      </div>
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_60%,transparent_100%)]" />
+        <div className="absolute top-1/4 left-0 w-96 h-96 bg-indigo-500/10 blur-[120px] rounded-full" />
+        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-cyan-500/10 blur-[120px] rounded-full" />
+      </div>
+
+      <div className="container mx-auto px-6 lg:px-12 max-w-9xl relative z-10">
+
+        {/* HEADER: SYSTEM INITIALIZATION */}
+        <motion.div
+          className="mb-20"
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-6xl lg:text-8xl font-black bg-gradient-to-r from-white via-slate-100 to-slate-200 bg-clip-text text-transparent mb-6 leading-none tracking-tight">
-            Technical Skills
+          <div className="flex items-center gap-4 mb-4">
+            <div className="h-[1px] w-12 bg-indigo-500" />
+            <span className="text-indigo-400 font-mono text-sm tracking-widest uppercase">
+              System_Capabilities
+            </span>
+          </div>
+          <h2 className="text-5xl lg:text-7xl font-black tracking-tighter text-white mb-6">
+            Core <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Architecture</span>
           </h2>
-          <p className="text-xl lg:text-2xl font-medium text-slate-400 max-w-3xl mx-auto">
-            Production expertise across modern development stack
+          <p className="text-lg lg:text-xl text-slate-400 max-w-2xl font-light">
+            The foundational technologies powering my scalable mobile and web solutions.
           </p>
         </motion.div>
 
-        {/* Primary Skills - Shorter Cards with Perfect Center Icon */}
-        <motion.div 
-          className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10 mb-32"
+        {/* PRIMARY SKILLS: THE HARDWARE MODULES */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-32"
           variants={staggerContainer}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
         >
-          {SKILLS.map((skill) => {
+          {SKILLS.map((skill, index) => {
             const Icon = skill.icon;
-            
             return (
               <motion.div
-                key={skill.id}
-                className="group relative w-full h-72 lg:h-80"
-                variants={cardVariants}
-                whileHover={{ y: -10, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 400 }}
+                key={skill.id || index}
+                variants={moduleVariants}
+                whileHover={{ y: -5 }}
+                className="group relative h-64 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-indigo-500/50 overflow-hidden transition-colors duration-500"
               >
-                {/* Compact Glass Card */}
-                <div className="mt-10 absolute inset-0 bg-gradient-to-br from-slate-800/40 to-black/50 backdrop-blur-3xl rounded-3xl border border-white/15 shadow-2xl p-8 lg:p-10 flex flex-col items-center justify-center text-center transition-all duration-500 group-hover:border-orange-400/40 group-hover:shadow-orange-500/25" />
-                
-                {/* Shine Effect */}
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "100%" }}
-                  transition={{ duration: 1.5 }}
-                />
-                
-                {/* Perfectly Centered Content */}
-                <div className="relative t-10 z-20 w-full h-full flex flex-col items-center justify-center space-y-6 px-4">
-                  
-                  {/* Centered Icon - Larger & Prominent */}
-                  <motion.div 
-                    className="w-28 h-28 lg:w-32 lg:h-32 flex items-center justify-center rounded-3xl bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-xl border-2 border-white/30 shadow-2xl group-hover:scale-110 group-hover:border-orange-400/50 transition-all duration-500 flex-shrink-0"
-                    whileHover={{ rotate: 8 }}
-                    transition={{ type: "spring", stiffness: 400 }}
-                  >
-                    <Icon className={`text-5xl lg:text-6xl ${skill.color} drop-shadow-2xl`} />
-                  </motion.div>
-                  
-                  {/* Compact Skill Name - Perfectly Centered */}
-                  <div className="flex items-center justify-center flex-1 ">
-                    <h3 className="text-2xl lg:text-3xl font-black text-white leading-tight tracking-tight bg-gradient-to-r from-white to-slate-200 bg-clip-text max-w-full text-center px-2">
+                {/* Tech Corner Brackets */}
+                <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-white/20 group-hover:border-indigo-400 transition-colors m-3" />
+                <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-white/20 group-hover:border-cyan-400 transition-colors m-3" />
+
+                {/* Giant Background Watermark Icon */}
+                <div className="absolute -right-8 -bottom-8 opacity-5 group-hover:opacity-20 transition-opacity duration-700 transform group-hover:scale-110 group-hover:rotate-12">
+                  <Icon className="text-[200px] text-white" />
+                </div>
+
+                {/* Content Container */}
+                <div className="relative h-full p-8 flex flex-col justify-between z-10">
+                  {/* Top Row: Icon & Status */}
+                  <div className="flex justify-between items-start">
+                    <div className={`p-4 rounded-xl bg-white/5 border border-white/10 shadow-lg group-hover:bg-indigo-500/10 transition-colors`}>
+                      <Icon className={`text-4xl ${skill.color || "text-slate-300"} drop-shadow-lg`} />
+                    </div>
+
+                    {/* Pulsing Status Indicator */}
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] font-mono text-slate-500 group-hover:text-cyan-400 transition-colors">ACTIVE</span>
+                      <div className="w-2 h-2 rounded-full bg-slate-700 group-hover:bg-cyan-400 group-hover:animate-pulse transition-colors shadow-[0_0_10px_rgba(6,182,212,0.5)]" />
+                    </div>
+                  </div>
+
+                  {/* Bottom Row: Title */}
+                  <div>
+                    <span className="text-xs font-mono text-indigo-400 mb-1 block opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
+                      Module_{index + 1}
+                    </span>
+                    <h3 className="text-2xl font-bold text-slate-200 group-hover:text-white tracking-tight transition-colors">
                       {skill.skills}
                     </h3>
                   </div>
                 </div>
+
+                {/* Hover Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/10 via-transparent to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               </motion.div>
             );
           })}
         </motion.div>
 
-        {/* Tools Section - Continuous Left-to-Right Motion */}
-        <motion.div 
-          initial={{ opacity: 0, y: 50 }}
+        {/* SECONDARY TOOLS: THE DATA STREAM */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="relative"
         >
-          <div className="text-center mb-20">
-            <h2 className="text-4xl lg:text-5xl font-black text-white mb-4 bg-gradient-to-r from-slate-300 to-orange-400 bg-clip-text tracking-tight">
-              Tools & Technologies
-            </h2>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              Production tools powering enterprise development workflows
+          <div className="flex flex-col items-center text-center mb-12">
+            <h3 className="text-2xl lg:text-3xl font-bold text-white mb-3">
+              Integrated Tools & Workflow
+            </h3>
+            <p className="text-slate-400 font-mono text-sm">
+              &lt; telemetry_data_stream active /&gt;
             </p>
           </div>
 
-          {/* Continuous Left-to-Right Conveyor Belt */}
-          <div className="relative overflow-hidden rounded-3xl bg-slate-900/50 backdrop-blur-xl border border-white/10 shadow-2xl py-12 lg:py-16">
-            
-            {/* Track */}
-            <div className="flex items-center w-max animate-scroll whitespace-nowrap px-8 lg:px-12 gap-6 lg:gap-8">
-              
-              {/* First Set */}
-              {TOOLS.map((tool, index) => (
-                <motion.div
-                  key={`first-${tool.id}-${index}`}
-                  className="group relative w-44 lg:w-52 h-28 lg:h-32 flex-shrink-0"
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.05,
-                    transition: { type: "spring", stiffness: 400 }
-                  }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-b from-white/15 to-white/5 backdrop-blur-xl rounded-2xl lg:rounded-3xl border border-white/20 shadow-xl p-6 lg:p-8 flex flex-col items-center justify-center transition-all duration-500 group-hover:border-orange-400/50 group-hover:shadow-orange-500/30 hover:shadow-2xl" />
-                  
-                  <div className="relative z-20 h-full flex flex-col items-center justify-center space-y-2">
-                    <div className="w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 shadow-lg group-hover:scale-110 transition-all duration-400">
-                      <tool.icon className={`text-2xl lg:text-3xl ${tool.color} drop-shadow-xl`} />
-                    </div>
-                    <span className="text-xs lg:text-sm font-semibold text-white px-2 text-center tracking-wide group-hover:text-orange-300 leading-tight">
+          {/* The Scrolling Conduit */}
+          <div className="relative w-full overflow-hidden rounded-full bg-slate-950/50 border border-white/10 py-6 before:absolute before:inset-y-0 before:left-0 before:w-32 before:bg-gradient-to-r before:from-[#050505] before:to-transparent before:z-10 after:absolute after:inset-y-0 after:right-0 after:w-32 after:bg-gradient-to-l after:from-[#050505] after:to-transparent after:z-10">
+
+            <div className="flex items-center w-max animate-infinite-scroll gap-6 px-6">
+
+              {/* Set 1 */}
+              {TOOLS.map((tool, index) => {
+                const ToolIcon = tool.icon;
+                return (
+                  <div
+                    key={`tool-1-${index}`}
+                    className="flex items-center gap-3 px-6 py-3 rounded-full bg-white/[0.03] border border-white/10 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-all duration-300 cursor-default group"
+                  >
+                    <ToolIcon className={`text-xl ${tool.color || "text-slate-400"} group-hover:scale-110 transition-transform`} />
+                    <span className="text-sm font-semibold text-slate-300 group-hover:text-white tracking-wide">
                       {tool.tools}
                     </span>
                   </div>
-                </motion.div>
-              ))}
-              
-              {/* Duplicate Set for Seamless Loop */}
-              {TOOLS.map((tool, index) => (
-                <motion.div
-                  key={`second-${tool.id}-${index}`}
-                  className="group relative w-44 lg:w-52 h-28 lg:h-32 flex-shrink-0"
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.05,
-                    transition: { type: "spring", stiffness: 400 }
-                  }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-b from-white/15 to-white/5 backdrop-blur-xl rounded-2xl lg:rounded-3xl border border-white/20 shadow-xl p-6 lg:p-8 flex flex-col items-center justify-center transition-all duration-500 group-hover:border-orange-400/50 group-hover:shadow-orange-500/30 hover:shadow-2xl" />
-                  
-                  <div className="relative z-20 h-full flex flex-col items-center justify-center space-y-2">
-                    <div className="w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 shadow-lg group-hover:scale-110 transition-all duration-400">
-                      <tool.icon className={`text-2xl lg:text-3xl ${tool.color} drop-shadow-xl`} />
-                    </div>
-                    <span className="text-xs lg:text-sm font-semibold text-white px-2 text-center tracking-wide group-hover:text-orange-300 leading-tight">
+                );
+              })}
+
+              {/* Set 2 (Duplicate for smooth looping) */}
+              {TOOLS.map((tool, index) => {
+                const ToolIcon = tool.icon;
+                return (
+                  <div
+                    key={`tool-2-${index}`}
+                    className="flex items-center gap-3 px-6 py-3 rounded-full bg-white/[0.03] border border-white/10 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-all duration-300 cursor-default group"
+                  >
+                    <ToolIcon className={`text-xl ${tool.color || "text-slate-400"} group-hover:scale-110 transition-transform`} />
+                    <span className="text-sm font-semibold text-slate-300 group-hover:text-white tracking-wide">
                       {tool.tools}
                     </span>
                   </div>
-                </motion.div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
-          {/* Custom CSS for continuous scroll */}
+          {/* Keyframes for the Data Stream */}
           <style jsx global>{`
-            @keyframes scroll {
+            @keyframes infinite-scroll {
               0% { transform: translateX(0); }
               100% { transform: translateX(-50%); }
             }
-            .animate-scroll {
-              animation: scroll 40s linear infinite;
+            .animate-infinite-scroll {
+              animation: infinite-scroll 35s linear infinite;
+            }
+            .animate-infinite-scroll:hover {
+              animation-play-state: paused;
             }
           `}</style>
         </motion.div>
+
       </div>
     </section>
   );

@@ -1,518 +1,231 @@
-// "use client";
-
-// import { motion, AnimatePresence } from "framer-motion";
-// import { useState } from "react";
-// import { FaMailBulk } from "react-icons/fa";
-// import { TypeAnimation } from "react-type-animation";
-
-// import { contactLinks } from "@/Data";
-
-// export default function Contact() {
-//   const [formData, setFormData] = useState({
-//     name: "",
-//     email: "",
-//     message: "",
-//   });
-//   const [isSubmitting, setIsSubmitting] = useState(false);
-//   const [submitted, setSubmitted] = useState(false);
-
-//   const containerVariants = {
-//     hidden: { opacity: 0 },
-//     visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
-//   };
-
-//   const cardVariants = {
-//     hidden: { opacity: 0, y: 50, scale: 0.9 },
-//     visible: {
-//       opacity: 1,
-//       y: 0,
-//       scale: 1,
-//       transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-//     },
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     setIsSubmitting(true);
-//     await new Promise((resolve) => setTimeout(resolve, 1500));
-//     setIsSubmitting(false);
-//     setSubmitted(true);
-//     setTimeout(() => {
-//       setSubmitted(false);
-//       setFormData({ name: "", email: "", message: "" });
-//     }, 3000);
-//   };
-
-//   return (
-//     <section className="min-h-screen px-4 sm:px-8 lg:px-12 py-24 bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">
-//       {/* Animated Background */}
-//       <div className="absolute inset-0">
-//         <div
-//           className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-full blur-3xl animate-pulse"
-//           style={{ animationDelay: "0s" }}
-//         />
-//         <div
-//           className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-orange-400/20 to-yellow-500/20 rounded-full blur-3xl animate-pulse"
-//           style={{ animationDelay: "2s" }}
-//         />
-//         <div
-//           className="absolute top-1/2 left-1/2 w-32 h-32 bg-gradient-to-r from-orange-300/30 to-orange-500/30 rounded-full blur-xl animate-ping"
-//           style={{ animationDelay: "1s" }}
-//         />
-//       </div>
-
-//       <motion.div
-//         className="max-w-7xl mx-auto relative z-10"
-//         initial="hidden"
-//         whileInView="visible"
-//         viewport={{ once: true, amount: 0.2 }}
-//         variants={containerVariants}
-//       >
-//         {/* Hero Header */}
-//         <motion.div className="text-center mb-24" variants={cardVariants}>
-//           <motion.div
-//             initial={{ scale: 0.5, opacity: 0 }}
-//             animate={{ scale: 1, opacity: 1 }}
-//             transition={{ duration: 1, delay: 0.3 }}
-//           >
-//             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent mb-8 tracking-tight">
-//               Let&apos;s
-//             </h1>
-//             <div className="text-5xl md:text-7xl lg:text-8xl font-black">
-//               <TypeAnimation
-//                 sequence={[
-//                   "Connect",
-//                   2000,
-//                   "Collaborate",
-//                   2000,
-//                   "Create",
-//                   2000,
-//                 ]}
-//                 wrapper="span"
-//                 cursor={true}
-//                 repeat={Infinity}
-//                 className="bg-gradient-to-r from-orange-500 via-red-500 to-yellow-500 bg-clip-text text-transparent"
-//               />
-//             </div>
-//           </motion.div>
-//           <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed mt-12">
-//             Open to{" "}
-//             <span className="text-orange-400 font-semibold">React Native</span>
-//             opportunities and growing into
-//             <span className="text-orange-400 font-semibold">
-//               {" "}
-//               Web Development
-//             </span>
-//             roles, along with freelance and collaborative projects.
-//           </p>
-//         </motion.div>
-
-//         <div className="grid lg:grid-cols-2 gap-12 items-start">
-//           {/* Contact Links - FIXED */}
-//           <motion.div variants={cardVariants} className="space-y-6">
-//             {contactLinks.map((link, index) => (
-//               <motion.a
-//                 key={link.href}
-//                 href={link.href}
-//                 target="_blank"
-//                 rel="noopener noreferrer"
-//                 className={`group relative block p-8 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden transition-all duration-700
-//                   hover:-translate-y-2 hover:shadow-2xl hover:shadow-orange-500/25 hover:bg-gradient-to-br from-[#FA8112] to-red-500 hover:text-white hover:border-white/30`}
-//                 initial={{ x: -100, opacity: 0 }}
-//                 animate={{ x: 0, opacity: 1 }}
-//                 transition={{ duration: 0.8, delay: index * 0.1 }}
-//                 whileHover={{ scale: 1.05, y: -10 }}
-//               >
-//                 <div className="relative z-10 flex items-center space-x-6">
-//                   <motion.div
-//                     className="p-4 rounded-2xl bg-gradient-to-br from-orange-500 to-yellow-500 shadow-2xl group-hover:scale-110 transition-all duration-300"
-//                     whileHover={{ scale: 1.1 }}
-//                   >
-//                     <link.icon className="w-8 h-8 text-white" />
-//                   </motion.div>
-//                   <div>
-//                     <h3 className="text-xl font-bold text-white transition-colors group-hover:text-white">
-//                       {link.label}
-//                     </h3>
-//                     <p className="text-gray-300 mt-1 font-mono text-lg font-medium group-hover:text-white/90">
-//                       {link.text}
-//                     </p>
-//                   </div>
-//                 </div>
-
-//                 <motion.div
-//                   className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-orange-500 to-yellow-500 opacity-0 group-hover:opacity-100"
-//                   initial={{ width: 0 }}
-//                   whileHover={{ width: "100%" }}
-//                   transition={{ duration: 0.5 }}
-//                 />
-
-//                 <div className="absolute inset-0 opacity-0 group-hover:opacity-20 pointer-events-none">
-//                   <div className="absolute top-4 right-4 w-2 h-2 bg-white rounded-full animate-ping" />
-//                   <div className="absolute bottom-4 left-4 w-3 h-3 bg-white/70 rounded-full animate-bounce [animation-delay:0.3s]" />
-//                 </div>
-//               </motion.a>
-//             ))}
-//           </motion.div>
-
-//           {/* Contact Form */}
-//           <motion.div
-//             variants={cardVariants}
-//             className="bg-white/3 backdrop-blur-3xl border border-white/15 rounded-3xl p-10 lg:p-12 shadow-2xl hover:shadow-orange-500/25 transition-all duration-500 relative overflow-hidden"
-//             whileHover={{ scale: 1.02 }}
-//           >
-//             <div className="absolute inset-0 opacity-20 pointer-events-none">
-//               <div className="absolute top-8 right-8 w-20 h-20 bg-gradient-to-br from-orange-400/30 rounded-full blur-xl animate-pulse" />
-//               <div className="absolute bottom-8 left-8 w-16 h-16 bg-gradient-to-br from-yellow-400/30 rounded-full blur-lg animate-pulse delay-1000" />
-//             </div>
-
-//             <div className="text-center mb-10 relative z-10">
-//               <h3 className="text-4xl font-black bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent mb-4">
-//                 Project Ready?
-//               </h3>
-//               <p className="text-xl text-gray-300">
-//                 Let&apos;s build something{" "}
-//                 <span className="text-orange-400 font-bold">exceptional</span>
-//               </p>
-//             </div>
-
-//             <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-//               <AnimatePresence mode="wait">
-//                 {submitted ? (
-//                   <motion.div
-//                     key="success"
-//                     initial={{ opacity: 0, scale: 0.8 }}
-//                     animate={{ opacity: 1, scale: 1 }}
-//                     exit={{ opacity: 0, scale: 0.8 }}
-//                     className="text-center py-12"
-//                   >
-//                     <motion.div
-//                       className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-2xl"
-//                       animate={{ rotate: 360 }}
-//                       transition={{ duration: 1, repeat: 1 }}
-//                     >
-//                       <FaMailBulk className="w-12 h-12 text-white" />
-//                     </motion.div>
-//                     <h4 className="text-2xl font-bold text-white mb-2">
-//                       Message Sent!
-//                     </h4>
-//                     <p className="text-gray-300">
-//                       I&apos;ll get back to you within 24 hours
-//                     </p>
-//                   </motion.div>
-//                 ) : (
-//                   <motion.div
-//                     key="form"
-//                     initial={{ opacity: 0 }}
-//                     animate={{ opacity: 1 }}
-//                     exit={{ opacity: 0 }}
-//                   >
-//                     <div>
-//                       <input
-//                         type="text"
-//                         placeholder="Your Name"
-//                         value={formData.name}
-//                         onChange={(e) =>
-//                           setFormData({ ...formData, name: e.target.value })
-//                         }
-//                         className="mb-4 w-full p-5 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-gray-400 text-lg backdrop-blur-sm focus:border-orange-500 focus:outline-none transition-all duration-300 hover:bg-white/15"
-//                         required
-//                       />
-//                     </div>
-//                     <div>
-//                       <input
-//                         type="email"
-//                         placeholder="your@email.com"
-//                         value={formData.email}
-//                         onChange={(e) =>
-//                           setFormData({ ...formData, email: e.target.value })
-//                         }
-//                         className="mb-4 w-full p-5 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-gray-400 text-lg backdrop-blur-sm focus:border-orange-500 focus:outline-none transition-all duration-300 hover:bg-white/15"
-//                         required
-//                       />
-//                     </div>
-//                     <textarea
-//                       placeholder="Tell me about your amazing project..."
-//                       value={formData.message}
-//                       onChange={(e) =>
-//                         setFormData({ ...formData, message: e.target.value })
-//                       }
-//                       rows={5}
-//                       className="mb-2 w-full p-5 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-gray-400 text-lg resize-vertical backdrop-blur-sm focus:border-orange-500 focus:outline-none transition-all duration-300 hover:bg-white/15"
-//                       required
-//                     />
-//                     <motion.button
-//                       type="submit"
-//                       disabled={isSubmitting}
-//                       className="group relative w-full bg-gradient-to-r from-[#FA8112] via-red-600 to-yellow-500 text-white py-6 px-8 rounded-3xl font-bold text-xl shadow-2xl hover:shadow-orange-500/50 transition-all duration-500 overflow-hidden disabled:opacity-50"
-//                       whileHover={{ scale: 1.05 }}
-//                       whileTap={{ scale: 0.95 }}
-//                     >
-//                       <span className="relative z-10 flex items-center justify-center space-x-3">
-//                         {isSubmitting ? (
-//                           <>
-//                             <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-//                             <span>Sending...</span>
-//                           </>
-//                         ) : (
-//                           <>
-//                             <span>Get In Touch</span>
-//                             <FaMailBulk className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
-//                           </>
-//                         )}
-//                       </span>
-//                       <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-yellow-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-//                     </motion.button>
-//                   </motion.div>
-//                 )}
-//               </AnimatePresence>
-//             </form>
-//           </motion.div>
-//         </div>
-//       </motion.div>
-//     </section>
-//   );
-// }
-
-
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 import emailjs from "@emailjs/browser";
-
-import { FaMailBulk } from "react-icons/fa"; // ✅ Fixed: Use 'fa' for FaMailBulk
-import { FaSpinner } from "react-icons/fa6";  // ✅ FaSpinner exists in fa6
+import { FaTerminal, FaPaperPlane, FaLink, FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
+import { FaSpinner } from "react-icons/fa6";
 import { TypeAnimation } from "react-type-animation";
 import { contactLinks } from "@/Data";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { 
-    opacity: 1, 
-    transition: { staggerChildren: 0.15 } 
-  }
-};
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState("idle"); // idle, success, error
 
-  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   setIsSubmitting(true);
-  //   await new Promise(resolve => setTimeout(resolve, 1500));
-  //   setIsSubmitting(false);
-  //   setSubmitted(true);
-  //   setTimeout(() => {
-  //     setSubmitted(false);
-  //     setFormData({ name: "", email: "", message: "" });
-  //   }, 3000);
-  // };
+  // Mouse Tracking for Spotlight (Consistent with Home)
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const dx = useSpring(mouseX, { damping: 20, stiffness: 100 });
+  const dy = useSpring(mouseY, { damping: 20, stiffness: 100 });
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-  
     try {
       await emailjs.send(
-        "service_svi8l79",   // 🔥 replace
-        "template_ae0ahft",  // 🔥 replace
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-        },
-        "iZrabm9sFjOBIswjQ"    // 🔥 replace
+        "service_svi8l79",
+        "template_ae0ahft",
+        { from_name: formData.name, from_email: formData.email, message: formData.message },
+        "iZrabm9sFjOBIswjQ"
       );
-  
-      setSubmitted(true);
+      setStatus("success");
       setFormData({ name: "", email: "", message: "" });
-  
+      setTimeout(() => setStatus("idle"), 5000);
     } catch (error) {
-      console.error("EmailJS Error:", error);
-      alert("Failed to send message. Please try again.");
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 5000);
     }
-  
     setIsSubmitting(false);
   };
-  
-  
+
   return (
-    <section className="min-h-screen py-24 lg:py-32 bg-gradient-to-br from-slate-900 via-black/20 to-slate-900/50 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-gradient-to-r from-orange-500/10 to-amber-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-slate-900/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}} />
+    <section className="relative min-h-screen bg-[#050505] py-24 overflow-hidden font-sans">
+      {/* 1. INTERACTIVE BACKGROUND */}
+      <div className="absolute top-20 left-10 pointer-events-none select-none">
+        <h2 className="text-[15rem] font-black text-white/[0.02] leading-none">
+          CONTACT
+        </h2>
+      </div>
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:50px_50px]" />
+        <motion.div
+          className="absolute inset-0 z-0 opacity-40 pointer-events-none"
+          style={{
+            background: `radial-gradient(600px circle at ${dx}px ${dy}px, rgba(99, 102, 241, 0.1), transparent 80%)`,
+          }}
+        />
       </div>
 
-      <motion.div 
-        className="container mx-auto px-6 lg:px-12 max-w-7xl relative z-10"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        {/* Hero Header */}
-        <motion.div className="text-center mb-24 lg:mb-32" variants={containerVariants}>
-          <motion.div 
-            className="inline-flex items-center gap-4 px-8 py-4 bg-black/20 backdrop-blur-xl rounded-3xl border border-white/10 mb-8 max-w-max mx-auto"
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 400 }}
-          >
-            <FaMailBulk className="w-5 h-5 text-orange-400" />
-            <h1 className="text-4xl lg:text-5xl font-black bg-gradient-to-r from-white via-slate-200 to-orange-400 bg-clip-text text-transparent tracking-tight">
-              Let's Connect
-            </h1>
-          </motion.div>
-          
-          <div className="max-w-4xl mx-auto">
-            <TypeAnimation
-              sequence={[
-                "Connect", 2000,
-                "Collaborate", 2000,
-                "Create", 2000
-              ]}
-              wrapper="h2"
-              cursor={true}
-              repeat={Infinity}
-              className="text-5xl lg:text-7xl font-black text-white mb-8 leading-tight"
-            />
-            <p className="text-xl lg:text-2xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
-              Open to <span className="text-orange-400 font-bold">React Native</span> &{' '}
-              <span className="text-orange-400 font-bold">Web Development</span> opportunities
-            </p>
-          </div>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Links */}
-          <motion.div variants={containerVariants} className="space-y-6">
-            {contactLinks.map((link, index) => (
-              <motion.a
-                key={link.href}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative block p-8 bg-black/20 backdrop-blur-xl border border-white/10 rounded-3xl hover:border-orange-500/50 hover:shadow-2xl hover:shadow-orange-500/25 hover:-translate-y-2 transition-all duration-500 overflow-hidden"
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-              >
-                <div className="flex items-center gap-6 relative z-10">
-                  <motion.div 
-                    className="p-4 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-500 shadow-xl group-hover:scale-110 transition-all duration-300"
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    <link.icon className="w-7 h-7 text-white" />
-                  </motion.div>
-                  <div className="min-w-0">
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-orange-400 transition-colors">
-                      {link.label}
-                    </h3>
-                    <p className="text-lg text-slate-300 font-medium truncate">
-                      {link.text}
-                    </p>
-                  </div>
-                </div>
-                <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-orange-500 to-amber-500 w-0 group-hover:w-full transition-all duration-500" />
-              </motion.a>
-            ))}
-          </motion.div>
-
-          {/* Contact Form */}
+      <div className="container mx-auto px-6 relative z-10">
+        {/* HEADER SECTION */}
+        <div className="flex flex-col items-center mb-20">
           <motion.div
-            variants={containerVariants}
-            className="bg-black/20 backdrop-blur-xl border border-white/10 rounded-3xl p-10 lg:p-12 shadow-2xl hover:shadow-orange-500/25 hover:border-orange-500/50 transition-all duration-500 relative overflow-hidden"
-            whileHover={{ scale: 1.01 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="flex items-center gap-2 text-indigo-400 font-mono mb-6"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 rounded-3xl -z-10" />
-            
-            <div className="text-center mb-12 relative z-10">
-              <h3 className="text-3xl lg:text-4xl font-black bg-gradient-to-r from-white to-slate-200 bg-clip-text text-transparent mb-4">
-                Start a Project
-              </h3>
-              <p className="text-xl text-slate-400">
-                Let's build something <span className="text-orange-400 font-bold">amazing</span>
-              </p>
+            <FaTerminal className="text-xs" />
+            <span className="text-xs uppercase tracking-[0.3em]">Communication_Channel / Initializing</span>
+          </motion.div>
+
+          <h2 className="text-5xl md:text-8xl font-bold text-white tracking-tighter text-center mb-8">
+            Start a <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Signal.</span>
+          </h2>
+
+          <div className="h-20 text-center">
+            <TypeAnimation
+              sequence={["Collaborate on Mobile.", 2000, "Build Modern Web.", 2000, "Create Pixel Perfection.", 2000]}
+              wrapper="p"
+              speed={50}
+              className="text-xl md:text-2xl text-slate-400 font-light italic"
+              repeat={Infinity}
+            />
+          </div>
+        </div>
+
+        <div className="grid lg:grid-cols-12 gap-12 items-stretch">
+
+          {/* LEFT: NEURAL NODES (Social Links) */}
+          <motion.div
+            className="lg:col-span-5 space-y-4"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+          >
+            <div className="p-6 border-l-2 border-indigo-500 bg-indigo-500/5 mb-8">
+              <h3 className="text-white font-bold text-lg mb-2">Network Nodes</h3>
+              <p className="text-slate-400 text-sm font-light">Establish a direct connection via these secure endpoints.</p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+            <div className="grid grid-cols-1 gap-4">
+              {contactLinks.map((link, idx) => (
+                <motion.a
+                  key={idx}
+                  href={link.href}
+                  target="_blank"
+                  whileHover={{ x: 10, backgroundColor: "rgba(99, 102, 241, 0.1)" }}
+                  className="group flex items-center justify-between p-5 bg-slate-900/30 border border-white/5 rounded-2xl transition-all"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="p-3 rounded-xl bg-slate-800 text-indigo-400 group-hover:text-white group-hover:bg-indigo-500 transition-all">
+                      <link.icon size={20} />
+                    </div>
+                    <div>
+                      <p className="text-[10px] uppercase tracking-widest text-slate-500">{link.label}</p>
+                      <p className="text-slate-200 font-medium group-hover:text-indigo-300">{link.text}</p>
+                    </div>
+                  </div>
+                  <FaLink className="text-slate-700 group-hover:text-indigo-500 opacity-0 group-hover:opacity-100 transition-all" />
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* RIGHT: THE UPLINK TERMINAL (Form) */}
+          <motion.div
+            className="lg:col-span-7"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+          >
+            <div className="relative h-full bg-slate-900/40 border border-white/10 rounded-3xl p-8 backdrop-blur-xl group">
+              {/* Corner Accents */}
+              <div className="absolute top-0 right-0 p-4 opacity-20 font-mono text-[10px] text-slate-500 hidden md:block">
+                SECURE_UPLINK_ENCRYPTED
+              </div>
+
               <AnimatePresence mode="wait">
-                {submitted ? (
+                {status === "success" ? (
                   <motion.div
-                    key="success"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    className="text-center py-16"
+                    className="h-full flex flex-col items-center justify-center text-center py-20"
                   >
-                    <motion.div
-                      className="w-24 h-24 mx-auto mb-8 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-3xl flex items-center justify-center shadow-2xl"
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 1 }}
-                    >
-                      <FaMailBulk className="w-12 h-12 text-white" />
-                    </motion.div>
-                    <h4 className="text-2xl font-bold text-white mb-4">Message Sent!</h4>
-                    <p className="text-slate-400 text-lg">I&apos;ll get back within 24 hours</p>
+                    <div className="w-20 h-20 bg-emerald-500/20 text-emerald-500 rounded-full flex items-center justify-center mb-6 border border-emerald-500/50">
+                      <FaCheckCircle size={40} />
+                    </div>
+                    <h3 className="text-3xl font-bold text-white mb-2">Transmission Received</h3>
+                    <p className="text-slate-400">Your signal has reached my terminal. Response incoming shortly.</p>
                   </motion.div>
                 ) : (
-                  <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                    <input
-                      type="text"
-                      placeholder="Your Name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="mb-2 w-full p-5 bg-black/30 border border-white/20 rounded-2xl text-white placeholder-slate-500 text-lg backdrop-blur-sm focus:border-orange-500 focus:outline-none transition-all duration-300 hover:bg-black/40"
-                      required
-                    />
-                    <input
-                      type="email"
-                      placeholder="your@email.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="mb-2 w-full p-5 bg-black/30 border border-white/20 rounded-2xl text-white placeholder-slate-500 text-lg backdrop-blur-sm focus:border-orange-500 focus:outline-none transition-all duration-300 hover:bg-black/40"
-                      required
-                    />
-                    <textarea
-                      placeholder="Tell me about your project..."
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      rows={4}
-                      className="mb-5 w-full p-5 bg-black/30 border border-white/20 rounded-2xl text-white placeholder-slate-500 text-lg resize-vertical backdrop-blur-sm focus:border-orange-500 focus:outline-none transition-all duration-300 hover:bg-black/40"
-                      required
-                    />
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-mono text-indigo-400 uppercase tracking-widest ml-1">User_Identifier</label>
+                        <input
+                          type="text"
+                          placeholder="Your Name"
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          className="w-full bg-black/40 border border-white/10 rounded-xl p-4 text-white placeholder:text-slate-700 focus:border-indigo-500 outline-none transition-all"
+                          required
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-mono text-indigo-400 uppercase tracking-widest ml-1">Return_Path</label>
+                        <input
+                          type="email"
+                          placeholder="Email Address"
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          className="w-full bg-black/40 border border-white/10 rounded-xl p-4 text-white placeholder:text-slate-700 focus:border-indigo-500 outline-none transition-all"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-mono text-indigo-400 uppercase tracking-widest ml-1">Data_Payload</label>
+                      <textarea
+                        rows={6}
+                        placeholder="Tell me about your amazing project..."
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        className="w-full bg-black/40 border border-white/10 rounded-xl p-4 text-white placeholder:text-slate-700 focus:border-indigo-500 outline-none transition-all resize-none"
+                        required
+                      />
+                    </div>
+
                     <motion.button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="group w-full bg-gradient-to-r from-orange-500 to-amber-500 text-slate-900 py-6 px-8 rounded-3xl font-bold text-xl shadow-2xl hover:shadow-orange-500/50 transition-all duration-500 overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
+                      disabled={isSubmitting}
+                      className="w-full relative group overflow-hidden bg-white text-black font-black py-5 rounded-xl uppercase tracking-[0.2em] text-sm transition-all flex items-center justify-center gap-3"
                     >
-                      <span className="flex items-center justify-center gap-3 relative z-10">
-                        {isSubmitting ? (
-                          <>
-                            <FaSpinner className="w-5 h-5 animate-spin" />
-                            <span>Sending...</span>
-                          </>
-                        ) : (
-                          <>
-                            <span>Get In Touch</span>
-                            <FaMailBulk className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                          </>
-                        )}
+                      <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+
+                      <span className="relative z-10 flex items-center gap-3 group-hover:text-white transition-colors">
+                        {isSubmitting ? <FaSpinner className="animate-spin" /> : <FaPaperPlane />}
+                        {isSubmitting ? "Transmitting..." : "Send Signal"}
                       </span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-amber-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </motion.button>
-                  </motion.div>
+
+                    {status === "error" && (
+                      <div className="flex items-center gap-2 text-red-400 text-xs font-mono mt-4">
+                        <FaExclamationTriangle />
+                        Error: Signal failed to transmit. Please check your network.
+                      </div>
+                    )}
+                  </form>
                 )}
               </AnimatePresence>
-            </form>
+            </div>
           </motion.div>
         </div>
-      </motion.div>
+      </div>
+
+      {/* FOOTER DECORATION */}
+      <div className="container mx-auto px-6 mt-32 border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-600 text-[10px] font-mono uppercase tracking-[0.4em]">
+        <p>© {new Date().getFullYear()} ELAKKIYA_SELVARAJAN.DEV</p>
+        <p>ALL_SYSTEMS_OPERATIONAL</p>
+      </div>
     </section>
   );
 }

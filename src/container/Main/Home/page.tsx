@@ -1,86 +1,26 @@
-// "use client";
-// import { TypeAnimation } from "react-type-animation";
-
-// import HomeImage from "@/component/HomeImage/page";
-
-// export default function Home() {
-//   const handleDownload = () => {
-//     const link = document.createElement("a");
-//     link.href = "/Elakkiya_Resume.pdf";
-//     link.download = "Elakkiya_Resume.pdf";
-//     document.body.appendChild(link);
-//     link.click();
-//     document.body.removeChild(link);
-//   };
-
-//   return (
-//     <div>
-//       <div className="flex flex-row justify-between items-center m-10">
-//         <div className="flex flex-col gap-5">
-//           <div>
-//             <span className="text-5xl">Hello </span>
-//             <span className="text-5xl text-[#F26B4F]">.</span>
-//           </div>
-
-//           <div className="flex items-center gap-4">
-//             <div className="w-40 h-[3px] bg-[#F26B4F]"></div>
-//             <TypeAnimation
-//               sequence={["I'm Elakkiya Selvarajan", 3000, "", 1000]}
-//               wrapper="span"
-//               speed={40}
-//               className="text-4xl font-semibold min-w-[420px] inline-block"
-//               repeat={Infinity}
-//             />
-//             {/* <h2 className="text-4xl font-semibold">I'm Elakkiya Selvarajan</h2> */}
-//           </div>
-
-//           <h1 className="text-5xl text-[#F26B4F]">Front End Developer</h1>
-//           <button
-//             onClick={handleDownload}
-//             className="px-6 py-3 bg-[#F26B4F] text-white rounded-xl font-semibold hover:bg-[#e85f44] transition w-[50%]"
-//           >
-//             My Resume
-//           </button>
-//         </div>
-
-//         <div>
-//           <HomeImage />
-//         </div>
-//       </div>
-//       <div>
-//         <h1 className="text-2xl wrap-anywhere text-red-50">
-//           I’m a React Native Developer with 2+ years of experience building
-//           cross-platform mobile applications. I enjoy creating clean, intuitive
-//           user experiences and scalable solutions. I also have experience in web
-//           frontend development and working with backend APIs. I’m seeking
-//           opportunities as a React Native or Frontend Developer to build
-//           meaningful products and grow as a developer.
-//         </h1>
-//       </div>
-//     </div>
-//   );
-// }
-
-
-
 "use client";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
+import { FaDownload, FaCode, FaMobileAlt, FaRocket } from "react-icons/fa";
 import HomeImage from "@/component/HomeImage/page";
-import { FaDownload } from "react-icons/fa";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.1
-    }
-  }
-};
 
 export default function Home() {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springConfig = { damping: 25, stiffness: 150 };
+  const dx = useSpring(mouseX, springConfig);
+  const dy = useSpring(mouseY, springConfig);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY]);
+
   const handleDownload = (e) => {
     e.preventDefault();
     const link = document.createElement("a");
@@ -92,127 +32,153 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900/90 via-black/30 to-slate-900 relative overflow-hidden py-20 px-8 lg:px-16">
-      {/* Subtle Background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-r from-orange-500/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-32 right-16 w-56 h-56 bg-gradient-to-r from-orange-400/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1.5s'}} />
+    <div className="relative min-h-screen bg-[#050505] text-slate-200 overflow-hidden font-sans">
+      {/* 1. UNIQUE BACKGROUND: THE INTERACTIVE GRID */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+        <motion.div
+          className="absolute inset-0 z-0 opacity-30 pointer-events-none"
+          style={{
+            background: `radial-gradient(600px circle at ${dx}px ${dy}px, rgba(99, 102, 241, 0.15), transparent 80%)`,
+          }}
+        />
       </div>
 
-      <motion.div 
-        className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-16 lg:gap-24"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-      >
-        {/* Left Content Column - EXACT SAME STRUCTURE */}
-        <motion.div 
-          className="flex flex-col gap-8 lg:gap-12 w-full lg:w-1/2 lg:max-w-lg"
-          variants={containerVariants}
-        >
-          {/* Hello . */}
-          <motion.div variants={containerVariants}>
-            <div className="flex items-baseline gap-4">
-              <motion.span 
-                className="text-5xl lg:text-6xl xl:text-7xl font-black text-white tracking-tight"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 }}
+      <main className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+          {/* LEFT COLUMN: HERO CONTENT */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="lg:col-span-7 space-y-8"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/5 text-indigo-400 text-sm font-medium mb-4">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+              </span>
+              Available for New Projects
+            </div>
+
+            <div className="space-y-4">
+              <h2 className="text-xl md:text-2xl font-light text-slate-400 tracking-[0.2em] uppercase">
+                Digital Architect
+              </h2>
+              <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white leading-none">
+                Elakkiya <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-400 to-emerald-400">
+                  Selvarajan
+                </span>
+              </h1>
+            </div>
+
+            <div className="flex items-center gap-4 h-12">
+              <div className="w-1 bg-indigo-500 h-full rounded-full" />
+              <TypeAnimation
+                sequence={["React Native Expert", 2000, "Frontend Strategist", 2000, "UI/UX Developer", 2000]}
+                wrapper="span"
+                speed={50}
+                className="text-2xl md:text-3xl font-mono text-slate-300"
+                repeat={Infinity}
+              />
+            </div>
+
+            <p className="max-w-xl text-lg text-slate-400 leading-relaxed">
+              Crafting high-performance mobile and web experiences with 2+ years of expertise.
+              I bridge the gap between complex backend logic and pixel-perfect aesthetics.
+            </p>
+
+            <div className="flex flex-wrap gap-6 items-center">
+              <motion.button
+                onClick={handleDownload}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative group px-8 py-4 bg-white text-black font-bold rounded-full overflow-hidden transition-all"
               >
-                Hello
-              </motion.span>
-              <motion.span 
-                className="text-5xl lg:text-6xl xl:text-7xl font-black bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.3 }}
-              >
-                .
-              </motion.span>
+                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors">
+                  <FaDownload /> Download Resume
+                </span>
+              </motion.button>
+
+              <div className="flex gap-4 text-slate-500">
+                <div className="flex flex-col items-center">
+                  <span className="text-white font-bold text-xl">2+</span>
+                  <span className="text-xs uppercase tracking-widest">Years Exp</span>
+                </div>
+                <div className="w-[1px] h-10 bg-slate-800" />
+                <div className="flex flex-col items-center">
+                  <span className="text-white font-bold text-xl">5+</span>
+                  <span className="text-xs uppercase tracking-widest">Projects</span>
+                </div>
+              </div>
             </div>
           </motion.div>
 
-          {/* Name Type Animation */}
-          <motion.div className="flex items-center gap-6" variants={containerVariants}>
-            <div className="w-40 h-[3px] lg:w-48 bg-gradient-to-r from-orange-500 to-amber-500 rounded-full shadow-lg" />
-            <TypeAnimation
-              sequence={[
-                "I'm Elakkiya Selvarajan",
-                3000,
-                "",
-                1000
-              ]}
-              wrapper="span"
-              speed={40}
-              className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white tracking-tight inline-block min-w-[400px] lg:min-w-[500px]"
-              repeat={Infinity}
-              cursor={true}
-              cursorColor="#F59E0B"
-            />
+          {/* RIGHT COLUMN: THE "BLUEPRINT" IMAGE */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+            className="lg:col-span-5 relative"
+          >
+            <div className="relative z-10 aspect-square rounded-3xl overflow-hidden border border-white/10 bg-slate-900/50 backdrop-blur-3xl p-4 group">
+              {/* Decorative Tech Corners */}
+              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-indigo-500 m-4 rounded-tl-lg" />
+              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-cyan-500 m-4 rounded-br-lg" />
+
+              <div className="relative h-full w-full rounded-2xl overflow-hidden bg-black/40 flex items-center justify-center">
+                <HomeImage />
+
+                {/* Floating Skill Badges */}
+                <motion.div
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                  className="absolute top-10 right-10 p-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl"
+                >
+                  <FaCode className="text-indigo-400 text-2xl" />
+                </motion.div>
+                <motion.div
+                  animate={{ y: [0, 10, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, delay: 1 }}
+                  className="absolute bottom-20 left-5 p-3 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl"
+                >
+                  <FaMobileAlt className="text-cyan-400 text-2xl" />
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Background Glow */}
+            <div className="absolute inset-0 bg-indigo-500/20 blur-[120px] rounded-full -z-10 animate-pulse" />
           </motion.div>
+        </div>
 
-          {/* Title */}
-          <motion.h1 
-            className="text-5xl lg:text-6xl xl:text-7xl font-black bg-gradient-to-r from-orange-500 via-amber-400 to-orange-600 bg-clip-text text-transparent mb-8"
-            variants={containerVariants}
-          >
-            Front End Developer
-          </motion.h1>
-
-          {/* CTA Button */}
-          <motion.button
-            onClick={handleDownload}
-            className="group relative w-[50%] lg:w-auto px-8 py-4 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold text-lg rounded-2xl shadow-2xl hover:shadow-orange-500/50 border border-orange-500/50 backdrop-blur-sm overflow-hidden transition-all duration-500 hover:-translate-y-1 max-w-max"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            variants={containerVariants}
-          >
-            <FaDownload className="w-5 h-5 inline mr-2 group-hover:translate-x-1 transition-transform" />
-            <span>My Resume</span>
-            <div className="absolute inset-0 bg-white/30 skew-x-12 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-          </motion.button>
-        </motion.div>
-
-        {/* Right Image - Same Position */}
-        <motion.div 
-          className="w-full lg:w-1/2 flex justify-center lg:justify-end"
-          variants={containerVariants}
+        {/* BOTTOM SECTION: THE BENTO DESCRIPTION */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-32 grid grid-cols-1 md:grid-cols-3 gap-6"
         >
-          <div className="relative max-w-md lg:max-w-lg xl:max-w-xl">
-            <motion.div 
-              className="relative bg-gradient-to-br from-orange-500/5 via-white/5 to-slate-900/50 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-8 lg:p-12 w-full aspect-[4/5] flex items-center justify-center overflow-hidden"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.6 }}
-            >
-              <HomeImage />
-            </motion.div>
-            <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 rounded-3xl blur-xl opacity-60 animate-pulse" />
+          <div className="md:col-span-2 p-8 rounded-3xl border border-white/5 bg-gradient-to-br from-white/5 to-transparent backdrop-blur-sm">
+            <h3 className="text-indigo-400 font-mono mb-4 text-sm tracking-tighter flex items-center gap-2">
+              <FaRocket /> THE MISSION
+            </h3>
+            <p className="text-2xl text-slate-300 font-light leading-relaxed">
+              "I don't just write code. I build <span className="text-white font-medium italic">scalable digital bridges</span> between human needs and technical possibilities. Specializing in React Native for seamless mobility."
+            </p>
+          </div>
+
+          <div className="p-8 rounded-3xl border border-white/5 bg-indigo-500/5 backdrop-blur-sm flex flex-col justify-center">
+            <h4 className="text-white font-bold mb-2">Core Philosophy</h4>
+            <p className="text-slate-400 text-sm">
+              Clean architecture, intuitive UI, and performance-first logic. If it doesn't scale, it's not finished.
+            </p>
           </div>
         </motion.div>
-      </motion.div>
-
-      {/* Description - Same Position Below */}
-      <motion.div 
-        className="max-w-4xl mx-auto mt-24 lg:mt-32"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-      >
-        <div className="bg-black/40 backdrop-blur-xl rounded-3xl border border-white/10 p-8 lg:p-12 shadow-2xl">
-          <h2 className="text-2xl lg:text-3xl font-bold text-white mb-6 bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text">
-            About Me
-          </h2>
-          <p className="text-lg lg:text-xl text-slate-300 leading-relaxed tracking-wide">
-            I’m a React Native Developer with 2+ years of experience building cross-platform mobile applications. 
-            I enjoy creating clean, intuitive user experiences and scalable solutions. 
-            I also have experience in web frontend development and working with backend APIs. 
-            I’m seeking opportunities as a React Native or Frontend Developer to build meaningful products and grow as a developer.
-          </p>
-        </div>
-      </motion.div>
+      </main>
     </div>
   );
 }
