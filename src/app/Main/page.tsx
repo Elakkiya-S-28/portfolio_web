@@ -1,25 +1,36 @@
 "use client";
-import  Contacts  from "@/container/Main/Contacts/page";
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { HiMenuAlt3, HiX } from "react-icons/hi"; // Install react-icons
+
+import Contacts from "@/container/Main/Contacts/page";
 import Experience from "@/container/Main/Experience/page";
 import Home from "@/container/Main/Home/page";
 import Project from "@/container/Main/Project/page";
 import { Skills } from "@/container/Main/Skills/page";
-import { useEffect, useState } from "react";
 
 export default function Main() {
   const [showNav, setShowNav] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const navLinks = [
+    { name: "Home", href: "#home" },
+    { name: "Skills", href: "#skills" },
+    { name: "Projects", href: "#project" },
+    { name: "Experience", href: "#experience" },
+    { name: "Contact", href: "#contacts" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
       if (currentScrollY > lastScrollY && currentScrollY > 80) {
         setShowNav(false);
+        setIsMobileMenuOpen(false); // Close menu on scroll
       } else {
         setShowNav(true);
       }
-
       setLastScrollY(currentScrollY);
     };
 
@@ -28,66 +39,109 @@ export default function Main() {
   }, [lastScrollY]);
 
   return (
-    <div className="relative">
-      <div
-        className={`fixed top-0 z-50 w-full flex justify-between items-center pt-4
-        transition-transform duration-300 ease-in-out bg-gray-800 pb-4
-        ${showNav ? "translate-y-0" : "-translate-y-full"}`}
+    <div className="bg-[#050505] min-h-screen selection:bg-indigo-500/30">
+      {/* NAVIGATION BAR */}
+      <nav
+        className={`fixed top-0 z-[100] w-full transition-all duration-300 border-b border-white/5 
+        ${showNav ? "translate-y-0" : "-translate-y-full"} 
+        ${lastScrollY > 20 ? "bg-black/80 backdrop-blur-xl py-3" : "bg-transparent py-5"}`}
       >
-        <h1 className=" text-xl text-white font-bold px-7">
-          Elakkiya Selvarajan
-        </h1>
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+          {/* LOGO */}
+          <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-xl md:text-2xl font-bold tracking-tighter text-white"
+          >
+            Elakkiya <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Selvarajan</span>
+          </motion.h1>
 
-        <h3 className="text-xl text-white pr-7">
-          <a
-            href="#home"
-            className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700"
-          >
-            Home
-          </a>
-          <a
-            href="#skills"
-            className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700"
-          >
-            Skills
-          </a>
-          <a
-            href="#project"
-            className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700"
-          >
-            Project
-          </a>
-           <a
-            href="#experience"
-            className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700"
-          >
-            Experience
-          </a>
-          <a
-            href="#contacts"
-            className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700"
-          >
-            Contacts
-          </a>
-        </h3>
-      </div>
-      <section id="home" className="min-h-screen px-7 pt-20">
-        <Home />
-      </section>
+          {/* DESKTOP NAV */}
+          <div className="hidden md:flex items-center gap-1">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="px-4 py-2 text-sm font-medium text-slate-400 hover:text-white transition-colors relative group"
+              >
+                {link.name}
+                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-indigo-400 to-cyan-400 transition-all group-hover:w-full" />
+              </a>
+            ))}
+          </div>
 
-      <section id="skills" className="min-h-screen px-7 pt-20">
-        <Skills />
-      </section>
-      <section id="project" className="min-h-screen px-7 pt-20">
-        <Project />
-      </section>
-      <section id="experience" className="min-h-screen px-7 pt-20">
-        <Experience />
-      </section>
+          {/* MOBILE TOGGLE */}
+          <button
+            className="md:hidden text-white text-3xl"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <HiX /> : <HiMenuAlt3 />}
+          </button>
+        </div>
 
-      <section id="contacts" className="min-h-screen px-7 pt-20">
-        <Contacts />
-      </section>
+        {/* MOBILE MENU OVERLAY */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-black/95 backdrop-blur-2xl border-b border-white/10 overflow-hidden"
+            >
+              <div className="flex flex-col p-6 gap-4">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-2xl font-semibold text-slate-300 hover:text-indigo-400 transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
+
+      {/* SECTIONS */}
+      <main className="relative">
+        <section id="home" className="scroll-mt-20">
+          <Home />
+        </section>
+
+        <section id="skills" className="scroll-mt-20 py-20">
+          <div className="max-w-7xl mx-auto px-6">
+            <Skills />
+          </div>
+        </section>
+
+        <section id="project" className="scroll-mt-20 py-20">
+          <div className="max-w-7xl mx-auto px-6">
+            <Project />
+          </div>
+        </section>
+
+        <section id="experience" className="scroll-mt-20 py-20">
+          <div className="max-w-7xl mx-auto px-6">
+            <Experience />
+          </div>
+        </section>
+
+        <section id="contacts" className="scroll-mt-20 py-20 bg-gradient-to-b from-transparent to-indigo-500/5">
+          <div className="max-w-7xl mx-auto px-6">
+            <Contacts />
+          </div>
+        </section>
+      </main>
+
+      {/* GLOBAL SMOOTH SCROLL HACK */}
+      <style jsx global>{`
+        html {
+          scroll-behavior: smooth;
+        }
+      `}</style>
     </div>
   );
 }

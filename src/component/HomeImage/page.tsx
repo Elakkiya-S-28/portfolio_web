@@ -1,38 +1,35 @@
 export default function HomeImage() {
   return (
-    <div className="relative w-[550px] h-[520px] overflow-hidden">
-      {/* <span
-        className="absolute top-5 left-15 text-[160px] text-[#F26B4F] select-none"
-        style={{
-          WebkitTextStroke: "3px #F26B4F",
-          color: "transparent",
-          opacity: 0.8,
-        }}
-      >
-        &lt;
-      </span>
+    /* 
+       1. Changed fixed w-[550px] to w-full.
+       2. Used aspect-square to maintain a consistent shape.
+       3. Added flex centering to make sure the image stays in the middle on mobile.
+    */
+    <div className="relative w-full h-full min-h-[300px] md:w-[550px] md:h-[520px] flex items-center justify-center overflow-hidden">
 
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-[300px] h-[300px] rounded-full border-[15px] border-[#F26B4F] opacity-80 mask-b-from-5% mask-b-to-90%"></div>
-      </div> */}
-
+      {/* 
+         IMAGE ADJUSTMENTS:
+         - Mobile: w-[90%] (stays inside container), relative (centered), top-0
+         - Desktop (md): w-[400px], absolute position with your specific offsets
+      */}
       <img
         src="/Image/homeimage.png"
         alt="Profile"
-        className="absolute top-25 right-20 w-[400px] h-auto object-contain z-10"
+        className="
+          relative z-10 object-contain transition-transform duration-500 mr-12
+          w-[85%] h-auto top-0            /* Mobile defaults */
+          md:absolute md:w-[400px] md:top-25 md:right-15 /* Desktop overrides */
+          group-hover:scale-105           /* Hover effect from parent group */
+        "
       />
 
-      {/* <div className="relative">
-        <span
-          className="absolute top-70 left-95 text-[160px] text-[#F26B4F] border outline select-none"
-          style={{
-            WebkitTextStroke: "3px #F26B4F",
-            color: "transparent",
-            opacity: 0.8,
-          }}
-        >
-          &gt;
-        </span>
+      {/* 
+          DECORATIVE BACKGROUND ELEMENTS (Optional/Refined)
+          If you want to keep the circle/background icons, 
+          scale them down for mobile so they don't cause overflow.
+      */}
+      {/* <div className="absolute inset-0 flex items-center justify-center opacity-20 md:opacity-40">
+        <div className="w-[250px] h-[250px] md:w-[350px] md:h-[350px] rounded-full border-[10px] md:border-[15px] border-indigo-500/30" />
       </div> */}
     </div>
   );

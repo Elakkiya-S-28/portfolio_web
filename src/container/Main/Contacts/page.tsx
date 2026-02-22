@@ -6,6 +6,7 @@ import { FaTerminal, FaPaperPlane, FaLink, FaCheckCircle, FaExclamationTriangle 
 import { FaSpinner } from "react-icons/fa6";
 import { TypeAnimation } from "react-type-animation";
 import { contactLinks } from "@/Data";
+import { section } from "framer-motion/client";
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -112,18 +113,30 @@ export default function Contact() {
                   href={link.href}
                   target="_blank"
                   whileHover={{ x: 10, backgroundColor: "rgba(99, 102, 241, 0.1)" }}
-                  className="group flex items-center justify-between p-5 bg-slate-900/30 border border-white/5 rounded-2xl transition-all"
+                  /* 1. Added w-full and overflow-hidden to the card */
+                  className="group flex items-center justify-between p-4 bg-slate-900/30 border border-white/5 rounded-2xl transition-all w-full overflow-hidden"
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 rounded-xl bg-slate-800 text-indigo-400 group-hover:text-white group-hover:bg-indigo-500 transition-all">
-                      <link.icon size={20} />
+                  {/* 2. 'min-w-0' is the CRITICAL fix here. It allows the flex child to shrink */}
+                  <div className="flex items-center gap-3 md:gap-4 min-w-0 flex-1">
+
+                    {/* 3. 'shrink-0' ensures the icon stays a perfect square and doesn't get crushed */}
+                    <div className="shrink-0 p-3 rounded-xl bg-slate-800 text-indigo-400 group-hover:text-white group-hover:bg-indigo-500 transition-all">
+                      <link.icon size={18} />
                     </div>
-                    <div>
-                      <p className="text-[10px] uppercase tracking-widest text-slate-500">{link.label}</p>
-                      <p className="text-slate-200 font-medium group-hover:text-indigo-300">{link.text}</p>
+
+                    {/* 4. 'min-w-0' and 'break-all' ensures the long email/link wraps inside the box */}
+                    <div className="min-w-0 flex-1">
+                      <p className="text-[9px] uppercase tracking-widest text-slate-500 truncate">
+                        {link.label}
+                      </p>
+                      <p className="text-slate-200 font-medium group-hover:text-indigo-300 text-sm md:text-base break-all leading-tight">
+                        {link.text}
+                      </p>
                     </div>
                   </div>
-                  <FaLink className="text-slate-700 group-hover:text-indigo-500 opacity-0 group-hover:opacity-100 transition-all" />
+
+                  {/* 5. Icon is shrink-0 to prevent it from disappearing on small screens */}
+                  <FaLink className="shrink-0 text-slate-700 group-hover:text-indigo-500 opacity-0 md:group-hover:opacity-100 transition-all ml-2" />
                 </motion.a>
               ))}
             </div>
@@ -227,5 +240,8 @@ export default function Contact() {
         <p>ALL_SYSTEMS_OPERATIONAL</p>
       </div>
     </section>
+
+
+
   );
 }
