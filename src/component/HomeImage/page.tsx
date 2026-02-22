@@ -2,7 +2,7 @@ export default function HomeImage() {
   return (
     <div className="relative w-[550px] h-[520px] overflow-hidden">
       <span
-        className="absolute top-5 left-5 text-[160px] text-[#F26B4F] select-none"
+        className="absolute top-5 left-15 text-[160px] text-[#F26B4F] select-none"
         style={{
           WebkitTextStroke: "3px #F26B4F",
           color: "transparent",

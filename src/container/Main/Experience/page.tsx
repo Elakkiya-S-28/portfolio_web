@@ -279,7 +279,7 @@ export default function Experience() {
               <div className="space-y-16">
                 {EXPERIENCE.map((item, index) => (
                   <motion.div
-                    key={item.company || index}
+                  key={`${item.company}-${item.role}-${index}`} 
                     className="relative flex items-start gap-12"
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
